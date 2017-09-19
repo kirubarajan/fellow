@@ -1,6 +1,6 @@
 ![Fellow](https://i.imgur.com/lW87eyU.png)
 
-Welcome to Fellow (because it's Penn LABs - badum tss) - a trello API clone.
+Welcome to Fellow (because it's Penn LABs - badum tss) - a kanban board API.
 
 ## Stack
 
@@ -10,7 +10,7 @@ This project was mostly written using ES6 features on top of a Node environment.
 
 1. Bulma for making forms look pretty.
 
-## Back end
+### Back end
 
 1. [Express](https://expressjs.com) for server (npm has a great ecosystem).
 2. [MongoDB](https://www.mongodb.com/) for database (although the data is technically relational, NoSQL is fast to develop with and the schema dictates document-level references anyway).
