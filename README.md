@@ -26,11 +26,13 @@ This project was mostly written using ES6 features on top of a Node environment.
 6. Added an author field using `creator` to all documents.
 7. Built middleware in `/server/auth/middleware.js` to check if token exists.
 
-## DevOps
+## DevOp & Installations
 
-Server hosted on Ubuntu instance on AWS (so you don't have to clone the repo - but you can still `yarn && yarn start` if you want). Link in repo description. Database hosted using MLab free tier.
+All environment variables are located in `.env` (I know this is isn't safe but I trust you guys), including `PORT`, `DB_URI` (currently hosted on MLab but can be changed) and `SECRET` (key used to sign tokens).
 
-All environment variables are located in `.env` (I know this is isn't safe but I trust you guys), including `PORT`, `DB_URI` and `SECRET` (key used to sign tokens).
+1. Clone repo.
+2. Install packages using `npm install`.
+3. Run `npm start` to run project.
 
 ## Documentation
 
