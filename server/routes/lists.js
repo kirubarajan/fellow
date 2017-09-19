@@ -39,7 +39,7 @@ router.post('/', (req, res) => {
 
             new_list.save((err, list) => {
                 if (err) {
-                    return done(err);
+                    res.send(err);
                 } else {
                     res.status(200).json({
                         list,
