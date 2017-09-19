@@ -4,7 +4,7 @@
   "description": "A trello clone for Penn Labs (fellow because it's a lab aha get it)",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js"
+    "start": "node server/index.js"
   },
   "author": "Arun Kirubarajan",
   "license": "MIT",
