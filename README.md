@@ -16,14 +16,15 @@ This project was mostly written using ES6 features on top of a Node environment.
 2. [MongoDB](https://www.mongodb.com/) for database (although the data is technically relational, NoSQL is fast to develop with and the schema dictates document-level references anyway).
 3. [JWT/Passport](https://jwt.io/) for authentication (extra feature talked about at length in Documentation section).
 
-## Notable changes
+## Notable changes and additions
 
 1. The `id`s of cards and lists are immutable strings (not `int`s) as per MongoDB's standard schemas.
 2. The `edit` routes have been changed to `/card/edit/:cardId` and `/list/edit/:listId` for consistency.
-3. I added a `/card/all` route to return all cards made by the user.
-4. I added a `/list/all` route to return all lists made by the user (useful for debugging).
-5. I added timestamps using a `createdAt` field to all documents.
-6. I added an author field using `creator` to all documents.
+3. Added a `/card/all` route to return all cards made by the user.
+4. Added a `/list/all` route to return all lists made by the user (useful for debugging).
+5. Added timestamps using a `createdAt` field to all documents.
+6. Added an author field using `creator` to all documents.
+7. Built middleware in `/server/auth/middleware.js` to check if token exists.
 
 ## DevOps
 
@@ -33,13 +34,14 @@ All environment variables are located in `.env` (I know this is isn't safe but I
 
 ## Documentation
 
-The code is commented but this section aims to provide a high-level overview of the project structure.
+The code is commented but this section aims to provide a high-level overview of the project structure. Use this guide while exploring the codebase.
 
 ### Server Behaviour
 
 0. Project is split into `/server` and `/client` folders. Project starts at `server/index.js` when running `yarn start`. 
 1. Schemas for users, cards, and lists are in the `/server/models` folder with their own respective files linked together `/server/models/index.js` when connecting to the MongoDB instance.
-2. 
+2. Routes are refactored into routers of their respective schema (and authentication protocol) in `server/routes`. 
+3. CRUD operations within routes are standard with the exception of re-ordering lists in which other are moved around according instead of simple swapping (similar to Trello's actual behavior).
 
 ### Security
 
