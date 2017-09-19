@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser'); 
 const passport = require('passport');
@@ -27,10 +28,14 @@ app.use('/', authRoutes);
 app.use('/list', listRoutes);
 app.use('/card', cardRoutes);
 
+app.get('/', function(req, res) {
+    res.sendFile(path.resolve(__dirname + '/../client/index.html'));
+});
+
 app.listen(process.env.PORT, err => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.info("🌎 Peep port %s. 🌎", process.env.PORT);
-  }
+    if (err) {
+      console.error(err);
+    } else {
+      console.info("🌎 Peep port %s. 🌎", process.env.PORT);
+    }
 });

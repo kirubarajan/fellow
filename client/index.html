@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Fellow</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.css">
+    </head>
+    <body>
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container">
+                <h1 class="title">
+                    Fellow
+                </h1>
+                <h2 class="subtitle">
+                   A kanban board <a href="https://github.com/kirubarajan/fellow">API</a>.
+                </h2>
+                </div>
+            </div>
+
+            <form action="/card" method="POST">
+                <div class="container">
+                    <h3> Cards </h3> <br />
+                    <div class="field">
+                        <label class="label">Title</label>
+                        <div class="control">
+                            <input class="input" name="title" type="text" placeholder="e.g. Review applications">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Description</label>
+                        <div class="control">
+                            <input class="input" name="description" type="text" placeholder="i.e. Accept Arun">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">List Id</label>
+                        <div class="control">
+                            <input class="input" name="listId" type="text" placeholder="e.g. 59c11fa95e9fe456040cff38">
+                        </div>
+                    </div>
+
+                    <button type="submit"> Submit </button>
+
+                </div>
+            </form>
+
+            <div class="container">
+                <br /> <h3> Lists </h3> <br />
+                <div class="field">
+                    <label class="label">Title</label>
+                    <div class="control">
+                        <input class="input"name="title" type="text" placeholder="e.g Penn Labs applications">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Order (begins at 0)</label>
+                    <div class="control">
+                        <input class="input" name="order" type="text" placeholder="e.g. 0">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
