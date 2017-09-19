@@ -4,7 +4,7 @@ Welcome to Fellow (because it's Penn LABs - badum tss) - a kanban board API.
 
 ## Stack
 
-This project was mostly written using ES6 features on top of a Node environment.
+This project was written using ES6 features (mostly) adhering to the [Airbnb Style ES6 Guide](https://github.com/airbnb/javascript) with a Node environment. 
 
 ### Front end
 
