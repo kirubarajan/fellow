@@ -17,6 +17,8 @@
     "jsonwebtoken": "^8.0.1",
     "mongoose": "^4.11.11",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "validator": "^8.2.0",
+    "moment": "^2.18.1"
   }
 }

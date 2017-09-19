@@ -4,15 +4,15 @@ Welcome to Fellow (because it's Penn LABs - badum tss) - a trello API clone buil
 
 ## Stack
 
-### Front-end
+### Front end
 
 1. Bulma for making forms look pretty.
 
-## Back-end
+## Back end
 
-1. Express for server (npm has a great ecosystem).
-2. MongoDB for database (although the data is technically relational, NoSQL is fast to develop with and the schema dictates document-level references anyway).
-3. JWT/Passport for authentication (extra feature talked about at length in Documentation section).
+1. [Express](https://expressjs.com) for server (npm has a great ecosystem).
+2. [MongoDB](https://www.mongodb.com/) for database (although the data is technically relational, NoSQL is fast to develop with and the schema dictates document-level references anyway).
+3. [JWT/Passport](https://jwt.io/) for authentication (extra feature talked about at length in Documentation section).
 
 ## Notable changes
 
@@ -22,7 +22,9 @@ Welcome to Fellow (because it's Penn LABs - badum tss) - a trello API clone buil
 ## DevOps
 
 Server hosted on Ubuntu instance on AWS (so you don't have to clone the repo - but you can still `yarn && yarn start` if you want).
-Database hosting using MLab.
+Database hosted using MLab free tier.
+
+All environment variables are located in `.env` (I know this is isn't safe but I trust you guys), including `PORT`, `DB_URI` and `SECRET` (key used to sign tokens).
 
 ## Documentation
 
