@@ -19,7 +19,13 @@ router.get('/all', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    jwt.verify(req.headers.authorization, process.env.SECRET, (err, decoded) => {
+    let token = req.body.token;
+
+    if (req.headers.authorization) {
+        token = req.headers.authorization;
+    }
+
+    jwt.verify(token, process.env.SECRET, (err, decoded) => {
         const request = {
             title: req.body.title,
             description: req.body.description,
