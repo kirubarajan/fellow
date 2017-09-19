@@ -4,26 +4,8 @@ const Card = require('mongoose').model('Card');
 const router = new express.Router();
 require('dotenv').config();
 
-router.get('/all', (req, res) => {
-    jwt.verify(req.headers.authorization, process.env.SECRET, (err, decoded) => {
-        Card.find({creator: decoded.sub}, (err, cards) => {
-            if (err) {
-                res.send(err)
-            }
-
-            res.status(200).json({
-                cards
-            });
-        });
-    });
-});
-
 router.post('/', (req, res) => {
-    let token = req.body.token;
-
-    if (req.headers.authorization) {
-        token = req.headers.authorization;
-    }
+    const token = (req.headers.authorization) ? req.headers.authorization : req.body.token;
 
     jwt.verify(token, process.env.SECRET, (err, decoded) => {
         const request = {
@@ -97,6 +79,20 @@ router.delete('/:cardId', (req, res) => {
 
             res.status(200).json({
                 message: "Card sucessfully deleted!"
+            });
+        });
+    });
+});
+
+router.get('/all', (req, res) => {
+    jwt.verify(req.headers.authorization, process.env.SECRET, (err, decoded) => {
+        Card.find({creator: decoded.sub}, (err, cards) => {
+            if (err) {
+                res.send(err)
+            }
+
+            res.status(200).json({
+                cards
             });
         });
     });
