@@ -1,6 +1,6 @@
 # Fellow
 
-[!Fellow](https://i.imgur.com/lW87eyU.png)
+![Fellow](https://i.imgur.com/lW87eyU.png)
 
 Welcome to Fellow (because it's Penn LABs - badum tss) - a trello API clone built using Node and ES6.
 
