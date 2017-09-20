@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+// creates card schema
+
 const CardSchema = new mongoose.Schema({
     title: String,
     description: String,

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+// creates list schema
+
 const ListSchema = new mongoose.Schema({
     title: String,
     order: Number,

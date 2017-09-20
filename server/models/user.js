@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+// creates user schema
+
 const UserSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -9,6 +11,8 @@ const UserSchema = new mongoose.Schema({
     password: String,
     createdAt: String
 });
+
+// comparing password hashes to verify user login attempt
 
 UserSchema.methods.comparePassword = function comparePassword(password, callback) {
     bcrypt.compare(password, this.password, callback);
@@ -21,10 +25,14 @@ UserSchema.pre('save', function saveHook(next) {
         return next();
     }
 
+    // generating password salt to be stored with user
+
     return bcrypt.genSalt((saltError, salt) => {
         if (saltError) {
             return next(saltError);
         }
+        
+        // hashing password and storing with user
 
         return bcrypt.hash(user.password, salt, (hashError, hash) => {
             if (hashError) {

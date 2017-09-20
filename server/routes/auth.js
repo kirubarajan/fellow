@@ -7,8 +7,13 @@ const router = new express.Router();
 require('dotenv').config();
 
 router.post('/signup', (req, res, next) => {
-    console.log(req.body);
+
+    // invoking signup middleware
+
     return passport.authenticate('local-signup', (err) => {
+
+        // throwing any errors
+
         if (err) {
             if (err.name === 'MongoError' && err.code === 11000) {
                 return res.status(409).json({
@@ -26,6 +31,8 @@ router.post('/signup', (req, res, next) => {
             });
         }
 
+        // if no errors then confirm signup
+
         return res.status(200).json({
             success: true,
             message: 'You have successfully signed up! Now you should be able to log in.'
@@ -35,7 +42,13 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
+
+    // invoking login middleware
+
     return passport.authenticate('local-login', (err, token, userData) => {
+        
+        // throwing any errors
+
         if (err) {
             if (err.name === 'IncorrectCredentialsError') {
                 return res.status(400).json({
@@ -50,6 +63,8 @@ router.post('/login', (req, res, next) => {
             });
         }
 
+        // if no errors then confirm login and return authorization token
+
         return res.json({
             success: true,
             message: 'You have successfully logged in!',
@@ -58,6 +73,8 @@ router.post('/login', (req, res, next) => {
         });
     })(req, res, next);
 });
+
+// logout function duh
 
 router.get('/logout', (req, res) => {
     req.logout();

@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 module.exports.connect = uri => {
+
+    // connecting to database through uri
+
     mongoose.connect(uri, {useMongoClient: true});
     mongoose.Promise = global.Promise;
 
@@ -8,6 +11,8 @@ module.exports.connect = uri => {
         console.log(`Mongoose connection error: ${err}`);
         process.exit(1);
     });
+
+    // loads schemas
 
     require('./user');
     require('./card');

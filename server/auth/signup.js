@@ -14,6 +14,8 @@ module.exports = new PassportLocalStrategy({
         createdAt: moment().format()
     };
 
+    // creates new user with data passed into middleware
+
     const newUser = new User(userData);
     newUser.save((err) => {
         if (err) {

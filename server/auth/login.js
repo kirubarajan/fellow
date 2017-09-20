@@ -10,15 +10,21 @@ module.exports = new PassportLocalStrategy({
     passReqToCallback: true
 }, (req, username, password, done) => {
 
+    // creating object of data passed into middleware
+
     const userData = {
         username: username.trim(),
         password: password.trim()
     };
 
+    // checking if user exists
+
     return User.findOne({ username: userData.username }, (err, user) => {
         if (err) {
             return done(err);
         }
+
+        // throwing any errors if raised
 
         if (!user) {
             const error = new Error('Incorrect username or password.');
@@ -27,10 +33,14 @@ module.exports = new PassportLocalStrategy({
             return done(error);
         }
 
+        // hashing provided password and comparing to original password hash
+
         return user.comparePassword(userData.password, (passwordErr, match) => {
             if (err) {
                 return done(err);
             }
+
+            // throwing error if not match
 
             if (!match) {
                 const error = new Error('Incorrect username or password.');
@@ -38,6 +48,8 @@ module.exports = new PassportLocalStrategy({
 
                 return done(error);
             }
+
+            // creates and signs token to be sent back to user
 
             const payload = {
                 username,

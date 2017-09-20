@@ -5,7 +5,12 @@ const router = new express.Router();
 require('dotenv').config();
 
 router.post('/', (req, res) => {
+    
+    // if not provided with authorization header then use default header
+
     const token = (req.headers.authorization) ? req.headers.authorization : req.body.token;
+
+    // decoding token
 
     jwt.verify(token, process.env.SECRET, (err, decoded) => {
         const request = {
@@ -14,6 +19,8 @@ router.post('/', (req, res) => {
             listId: req.body.listId,
             creator: decoded.sub
         };
+
+        // creating new card
 
         const new_card = new Card(request);
 
@@ -31,6 +38,9 @@ router.post('/', (req, res) => {
 });
 
 router.post('/edit/:cardId', (req, res) => {
+
+    // generating update query
+
     let query = {};
     
     if (req.body.title) {
@@ -40,6 +50,8 @@ router.post('/edit/:cardId', (req, res) => {
     if (req.body.description) {
         query.description = req.body.description;
     }
+
+    // updating card
 
     Card.findByIdAndUpdate(req.params.cardId, {$set: query}, (err, card) => {
         if (err) {
@@ -54,7 +66,13 @@ router.post('/edit/:cardId', (req, res) => {
 });
 
 router.get('/:cardId', (req, res) => {
+
+    // decoding token
+
     jwt.verify(req.headers.authorization, process.env.SECRET, (err, decoded) => {
+
+        // finding respective card and returning
+
         Card.findById(req.params.cardId, (err, card) => {
             if (err) {
                 res.send(err);
@@ -70,8 +88,15 @@ router.get('/:cardId', (req, res) => {
     });
 });
 
+
 router.delete('/:cardId', (req, res) => {
+
+    // decoding token
+
     jwt.verify(req.headers.authorization, process.env.SECRET, (err, decoded) => {
+        
+        // removing card
+
         Card.findByIdAndRemove(req.params.cardId, (err, card) => {
             if (err) {
                 res.send(err);
@@ -85,7 +110,13 @@ router.delete('/:cardId', (req, res) => {
 });
 
 router.get('/all', (req, res) => {
+
+    // decoding token
+
     jwt.verify(req.headers.authorization, process.env.SECRET, (err, decoded) => {
+        
+        // returning all cards created by current user
+
         Card.find({creator: decoded.sub}, (err, cards) => {
             if (err) {
                 res.send(err)
